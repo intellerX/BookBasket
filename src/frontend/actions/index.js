@@ -37,7 +37,29 @@ export const setError = payload => ({
 
 export const registerUser = (payload, redirectUrl) => {
   return (dispatch) => {
-    axios.post('/auth/sign-up', payload)
+    axios.post('https://bookbasket1.herokuapp.com/api/user/', payload)
+      .then(({ data }) => dispatch(registerRequest(data)))
+      .then(() => {
+        window.location.href = redirectUrl
+      })
+      .catch(error => dispatch(setError(error)))
+  };
+};
+
+export const registerBook = (payload, redirectUrl) => {
+  return (dispatch) => {
+    axios.post('https://bookbasket1.herokuapp.com/api/books/', payload)
+      .then(({ data }) => dispatch(registerRequest(data)))
+      .then(() => {
+        window.location.href = redirectUrl
+      })
+      .catch(error => dispatch(setError(error)))
+  };
+};
+
+export const changePassword = (payload, redirectUrl) => {
+  return (dispatch) => {
+    axios.patch('https://bookbasket1.herokuapp.com/api/pass/return/', payload)
       .then(({ data }) => dispatch(registerRequest(data)))
       .then(() => {
         window.location.href = redirectUrl
@@ -48,24 +70,28 @@ export const registerUser = (payload, redirectUrl) => {
 
 export const loginUser = ({ email, password }, redirectUrl) => {
   return (dispatch) => {
-    axios({
-      url: '/auth/sign-in/',
-      method: 'post',
-      auth: {
-        username: email,
-        password
-      },
-    })
-      .then(({ data }) => {
-        document.cookie = `email=${data.user.email}`;
-        document.cookie = `name=${data.user.name}`;
-        document.cookie = `id=${data.user.id}`;
-        dispatch(loginRequest(data.user));
-      })
-      .then(() => {
+
+    axios.post('https://bookbasket1.herokuapp.com/api/auth/', {
+      email: email,
+      password: password,
+    }).then(response => {
+
+      console.log(response)
+      
+      if(response.status === 200) {
+        document.cookie = `email=${email}`;
+        document.cookie = `name=${email}`;
+        document.cookie = `id=${email}`;
         window.location.href = redirectUrl;
-      })
-      .catch(err => dispatch(setError(err)));
+
+      }
+
+    }).catch(e => {
+      console.log(e);
+    });
+
+
+    
   }
 };
 

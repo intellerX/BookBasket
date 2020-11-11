@@ -74,21 +74,20 @@ const renderApp = async (req, res) => {
   const { token ,email, name, id } = req.cookies;
 
   try {
-    let movieList = await axios({
-      url: `${process.env.API_URL}/api/movies`,
-      headers: { Authorization: `Bearer ${token}` },
+    let bookList = await axios({
+      url: `https://bookbasket1.herokuapp.com/api/books/`,      
       method: 'get'
     });
 
-    movieList = movieList.data.data;
+    bookList = bookList.data.data;
 
     initialState = {
       user: {
         id, email, name
       },
       myList: [],
-      trends: movieList.filter(movie => movie.contentRating === 'PG' && movie._id),
-      originals: movieList.filter(movie => movie.contentRating === 'G' && movie._id)
+      trends: bookList,
+      originals: bookList.filter(book => book.publication_date === '2020-11-11')
     };
 
   } catch (err) {
@@ -114,7 +113,7 @@ const renderApp = async (req, res) => {
 
   res.send(setResponse(html, preloadedState, req.hashManifest));
 };
-
+/*
 app.post('/auth/sign-in', async function(req, res, next) {
 
   // get attr from body request
@@ -145,7 +144,7 @@ app.post('/auth/sign-in', async function(req, res, next) {
     };
 
   })(req, res, next);
-});
+});*/
 
 app.post("/auth/sign-up", async function(req, res, next) {
   const { body: user } = req;

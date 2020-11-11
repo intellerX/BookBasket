@@ -9,8 +9,8 @@ const Search = ({ isHome }) => {
   });
   return (
     <section className="main">
-      <h2 className="main__title">¿Qué quieres ver hoy?</h2>
-      <input type="text" className={inputStyle} placeholder="Buscar..." />
+      <h2 className="main__title">¿Qué quieres leer hoy?</h2>
+      <input className="search" type="text" className={inputStyle} placeholder="Buscar..." />
     </section>
   );
 }

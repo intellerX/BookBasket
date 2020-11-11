@@ -15,7 +15,7 @@
 .input {
   background-color: rgba(255,255,255,0.1);
   border: 2px solid white;
-  border-radius: 25px;
+  border-radius: 2px;
   color: white;
   font-family: 'Muli', sans-serif;
   font-size: 16px;
@@ -23,6 +23,7 @@
   margin-bottom: 20px;
   outline: none;
   padding: 0px 20px;
+  width: 100%;
 }
 
 .main .isHome {

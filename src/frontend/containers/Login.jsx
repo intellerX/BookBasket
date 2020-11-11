@@ -50,27 +50,13 @@ const Login = props => {
             />
             <button className="button" type="submit">Iniciar sesión</button>
             <div className="login__container--remember-me">
-              <label htmlFor="first_checkbox">
-                <input type="checkbox" id="cbox1" value="first_checkbox" />
-                Recuérdame
-              </label>
-              <a href="/">Olvidé mi contraseña</a>
+              
+              <a href="/cambarpass">Olvidé mi contraseña</a>
             </div>
           </form>
-          <section className="login__container--social-media">
-            <div>
-              <img src={googleIcon} alt="Google" />
-              {' '}
-              Inicia sesión con Google
-            </div>
-            <div>
-              <img src={twitterIcon} alt="Twitter" />
-              {' '}
-              Inicia sesión con Twitter
-            </div>
-          </section>
+          
           <p className="login__container--register">
-            No tienes ninguna cuenta
+            No tienes ninguna cuenta?
             {' '}
             <Link to="/register">
               Regístrate
